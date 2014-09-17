@@ -1,0 +1,30 @@
+<head>
+<title> Team Sync </title>
+</head>
+
+<body>
+
+{{>navbar}}
+{{>teamWall}}
+
+</body>
+
+<template name="navbar">
+
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">TeamSync</a>
+    <ul class="nav">
+
+      <li id="createTeam"><a href="#" > <i class="icon-th-large"> </i> Create Team </a>  </li>
+      <li id="joinTeam"><a href="#"> <i class="icon-resize-small"> </i> Join Team </a>  </li>
+
+     <li id="teamRequests"><a href="#"> <i class="icon-user"> </i> Join Requests <span class="label label-info">8</span>
+</a>   </li>
+      <li id="updateStatus"><a href="#"> <i class="icon-bullhorn">   </i> Update Status</a></li>
+      <li id="addMission"><a href="#"> <i class="icon-flag">   </i> Add Mission</a></li>
+    </ul>
+  </div>
+</div>
+
+</template>

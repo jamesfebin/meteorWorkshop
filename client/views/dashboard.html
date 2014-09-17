@@ -1,0 +1,55 @@
+<template name="dashboard">
+
+
+        <div class="teamBoxContainer row">
+
+                {{#each teams}}
+
+                <div class="teamBox span4">
+                        <br/>
+                        <p class="teamName lead" > {{name}} </p>
+                        <center>
+                                <img class="proPicSmall" src="https://pbs.twimg.com/profile_images/480193194982776832/4ON0k7xg_bigger.jpeg" />
+                                <img class="proPicSmall" src="https://pbs.twimg.com/profile_images/507617308215238656/pJ-NdaBo_bigger.jpeg" />
+                                <img class="proPicSmall" src="https://pbs.twimg.com/profile_images/481721074824925184/CKORPsmj_bigger.jpeg" />
+                                <br/>
+                                <br/>
+                                <button class="btn btn-large btn-inverse" > <i class="icon-home icon-white"></i> </button>
+                        </center>
+                </div>
+
+                {{/each}}
+
+        </div>
+
+        <div id="createTeamModal" class="modal hide fade">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Create Team</h3>
+          </div>
+          <div id="createTeamModalBody" class="modal-body">
+        <label for="teamName"> Team Name </label>
+          <input type="text" id="teamName" placeHolder="Your team name" />
+          </div>
+          <div class="modal-footer">
+            <a href="#" class="btn">Close</a>
+            <a href="#" id="btnCreateTeam" class="btn btn-primary">Create Team</a>
+          </div>
+        </div>
+
+        <div id="joinTeamModal" class="modal hide fade">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Search Team</h3>
+            <br/>
+              <input type="text" id="teamName" placeHolder="Your team name" />
+          </div>
+          <div class="modal-body">
+          <p> Boutline <button id="btnJoinTeam"  class="btn btn-small btn-info pull-right"> Send Join Request </button> </p>
+          </div>
+
+        </div>
+
+
+
+</template>

@@ -1,0 +1,169 @@
+html,body
+{
+
+    height:100%
+
+
+}
+
+.teamBoxContainer
+{
+
+        margin-left:5px;
+}
+.teamBox
+{
+
+    border-radius:10px;
+    height:200px;
+    margin-bottom:20px;
+    position:relative
+
+}
+
+.teamName
+{
+
+    text-align:center;
+    font-size:2.3em;
+
+}
+.teamNavButton
+{
+            float: right;
+            top: 0;
+            right: 0;
+
+
+}
+.proPicSmall
+{
+ border-radius:30px;
+ height:50px;
+ width:50px;
+ margin-left:5px
+
+}
+.teamWallContainer
+{
+                height:100%;
+                margin-left:5px;
+
+}
+.statusProPic
+{
+        height:60px;
+        width:60px;
+
+        border-radius:10px;
+}
+.statusContainer
+{
+        border-radius:10px;
+                height:80%;
+                overflow:scroll;
+
+}
+.statusBoxContainer
+{
+        margin-bottom:25px;
+
+}
+.statusProPicContainer
+{
+        margin-right:0px;
+        margin-bottom:0px;
+}
+.statusUpdate
+{
+        margin-left:0px;
+
+}
+
+.statusText
+{
+        margin-top:0px;
+        font-size:1.1em;
+        line-height:20px;
+
+}
+.FullName
+{
+        margin-bottom:0px;
+        font-size:0.8em;
+
+
+}
+#statusTextBox
+{
+        width:90%;
+        height:30px;
+
+}
+.dateInput
+{
+   width:20%;
+   display:inline
+}
+.missionContainer
+{
+        border-radius:10px;
+        height:80%
+        overflow:scroll;
+
+
+}
+
+.missinBoxContainer
+{
+        height:25%;
+}
+.taskListContainer
+{
+
+        overflow:scroll;
+        height:110px;
+}
+.taskContainer
+{
+
+        margin-bottom:5px;
+}
+.tasksText
+{
+        font-size:1.1em;
+}
+#taskCheckBox
+{
+        height:22px;
+}
+.sendMessageContainer
+{
+        position: absolute;
+bottom: 0;
+width:100%;
+
+}
+.message{
+        font-size:1.1em;
+        line-height:20px;
+
+}
+
+.messagesContainer
+{
+        overflow:scroll;
+        height:230px;
+
+}
+#txtBox
+{
+        width:100%;
+
+}
+.chatContainer
+{
+        border-radius:10px;
+        height:80%;
+        position:relative
+}
