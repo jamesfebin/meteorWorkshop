@@ -31,7 +31,6 @@ Router.map(function(){
                         Session.set('currentPage','dashboard');
 
                         Meteor.subscribe('teamsData');
-                        Meteor.subscribe('teamUserData',3);
                 },
                 onBeforeAction: function () {
                 if (! Meteor.user()) {

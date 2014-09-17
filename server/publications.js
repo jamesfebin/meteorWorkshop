@@ -22,7 +22,7 @@ return Teams.find({name: { $regex: teamName+".*", $options: 'i' }});
 Meteor.publish('teamRequestUsersData',function(teamId)
 {
 
-var teamData = Teams.findOne({_id:teamData});
+var teamData = Teams.findOne({_id:teamId});
 if(teamData)
 return Meteor.users.find({_id:{$in:teamData.requests}});
 
@@ -31,9 +31,9 @@ return Meteor.users.find({_id:{$in:teamData.requests}});
 Meteor.publish('teamUserData',function(teamId,limit)
 {
 
-var teamData = Teams.findOne({_id:teamData});
+var teamData = Teams.findOne({_id:teamId});
 if(teamData)
-return Meteor.users.find({_id:{$in:teamData.users}},{limit:limit});
+return Meteor.users.find({_id:{$in:teamData.users}},{sort:{_id:-1},limit:limit});
 
 });
 

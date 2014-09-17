@@ -41,6 +41,7 @@ Template.dashboard.teamUsers = function()
 {
 
         var teamData = Teams.findOne({_id:this._id});
+        Meteor.subscribe('teamUserData',this._id,3);
         if(teamData)
         return Meteor.users.find({_id:{$in:teamData.users}},{limit:3});
 }

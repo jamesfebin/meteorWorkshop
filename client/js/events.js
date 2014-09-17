@@ -55,6 +55,7 @@ Template.dashboard.events({
                         else
                         {
                                 console.log(success);
+                                $('#joinTeamModal').modal('hide');
                         }
                 });
         }

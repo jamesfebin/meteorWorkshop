@@ -18,12 +18,12 @@ acceptUserRequest:function(userId,teamId)
         if(Teams.find({_id:teamId,users:{$in:[this.userId]}}).count())
         {
 
-        var associated = Teams.find({_id:teamId,users:{$in:[Meteor.user()._id]}}).count();
+        var associated = Teams.find({_id:teamId,users:{$in:[userId]}}).count();
 
         if(!associated)
-        Teams.update({_id:teamId},{$push:{users:Meteor.user()._id}});
+        Teams.update({_id:teamId},{$push:{users:userId}});
 
-        Teams.update({_id:teamId},{$pull:{requests:Meteor.user()._id}});
+        Teams.update({_id:teamId},{$pull:{requests:userId}});
 
         return 1;
 
@@ -39,10 +39,10 @@ rejectUserRequest:function(userId,teamId)
         if(Teams.find({_id:teamId,users:{$in:[this.userId]}}).count())
         {
 
-        var associated = Teams.find({_id:teamId,requests:{$in:[Meteor.user()._id]}}).count();
+        var associated = Teams.find({_id:teamId,requests:{$in:[userId]}}).count();
 
         if(associated)
-        return Teams.update({_id:teamId},{$pull:{requests:Meteor.user()._id}});
+        return Teams.update({_id:teamId},{$pull:{requests:userId}});
 
         }
 
