@@ -62,6 +62,7 @@ Router.map(function(){
                         this.subscribe('tasksData',this.params.id,10);
                         this.subscribe('teamsData');
                         this.subscribe('teamRequestUsersData',this.params.id);
+                        this.subscribe('teamUserData',this.params.id,50);
 
 
                 },

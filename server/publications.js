@@ -1,6 +1,6 @@
 Meteor.publish('teamsData',function()
 {
-
+        if(this.userId);
         return Teams.find({users:{$in:[this.userId]}});
 
 });
@@ -23,7 +23,7 @@ Meteor.publish('teamRequestUsersData',function(teamId)
 {
 
 var teamData = Teams.findOne({_id:teamId});
-if(teamData)
+if(teamData.requests)
 return Meteor.users.find({_id:{$in:teamData.requests}});
 
 });
@@ -32,7 +32,7 @@ Meteor.publish('teamUserData',function(teamId,limit)
 {
 
 var teamData = Teams.findOne({_id:teamId});
-if(teamData)
+if(teamData.users)
 return Meteor.users.find({_id:{$in:teamData.users}},{sort:{_id:-1},limit:limit});
 
 });

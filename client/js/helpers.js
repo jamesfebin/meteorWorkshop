@@ -12,7 +12,8 @@ Template.dashboard.searchResults=function()
 Template.statusContainer.statusUpdates = function ()
 {
 
-        return Status.find({},{sort:{time:-1}});
+
+        return Status.find({teamId:Session.get('teamId')},{sort:{time:-1}});
 }
 Template.missionsContainer.missions = function()
 {
@@ -33,7 +34,7 @@ Template.missionsContainer.tasks=function(id)
 Template.teamWall.teamRequests = function()
 {
         var teamData = Teams.findOne({_id:Session.get('teamId')});
-        if(teamData)
+        if(teamData.requests)
         return Meteor.users.find({_id:{$in:teamData.requests}});
 }
 
@@ -42,9 +43,12 @@ Template.dashboard.teamUsers = function()
 
         var teamData = Teams.findOne({_id:this._id});
         Meteor.subscribe('teamUserData',this._id,3);
-        if(teamData)
+        if(teamData.users)
         return Meteor.users.find({_id:{$in:teamData.users}},{limit:3});
 }
+
+
+
 Template.missionsContainer.helpers({
         date:function()
         {

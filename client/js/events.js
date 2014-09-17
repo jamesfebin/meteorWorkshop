@@ -108,7 +108,19 @@ Template.teamWall.events({
                 var time = Math.round(+new Date()/1000);
                 var teamId = Session.get('teamId');
                 Status.insert({teamId:teamId,userId:1,userProPic:Meteor.user().services.twitter.profile_image_url,status:status,time:time,fullName:Meteor.user().profile.name});
+                Meteor.call('updateStatus',status,function(err,success)
+                {
+                        if(err)
+                        {
+                                console.log(err);
+                        }
+                        else
+                        {
+                                console.log(success);
+                        }
+                });
                 $('#updateStatusModal').modal('hide');
+
 
 
         }
