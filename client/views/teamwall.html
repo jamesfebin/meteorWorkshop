@@ -18,8 +18,9 @@
                         <h3>Team Requests</h3>
                 </div>
                 <div class="modal-body">
-                        <p> Febin John James <span class="pull-right"> <button class="btn btn-small btn-success "> Accept </button>  <button class="btn btn-small btn-warning"> Reject </button></span> </p>
-
+                        {{#each teamRequests}}
+                        <p> {{profile.name}} <span class="pull-right"> <button value ={{_id}} id="acceptUser" class="btn btn-small btn-success "> Accept </button>  <button value={{_id}} id="rejectUser" class="btn btn-small btn-warning"> Reject </button></span> </p>
+                        {{/each}}
                 </div>
         </div>
 
@@ -130,7 +131,7 @@
                         <small > {{date}} </small>
 
                         <div class="progress progress-success progress-striped">
-                                <div class="bar" style="width: 70%"></div>
+                                <div class="bar" style="width: {{progress}}%"></div>
                         </div>
 
                         <div class="taskListContainer">
@@ -138,7 +139,7 @@
                                 {{#each tasks _id}}
                                 <div class="taskContainer">
                                         <label class="checkbox ">
-                                                <input id="taskCheckBox" type="checkbox" > <b class="lead tasksText muted"> {{task}}</b>
+                                                <input id="taskCheckBox" value="{{_id}}" type="checkbox" checked="{{completed}}" > <b class="lead tasksText muted"> {{task}}</b>
                                         </label>
 
                                 </div>

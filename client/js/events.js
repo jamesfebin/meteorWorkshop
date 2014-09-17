@@ -3,7 +3,7 @@ Template.navbar.events({
         {
 
                 $('#createTeamModal').modal('show');
-        },
+                        },
         'click #joinTeam':function(event)
         {
                 $('#joinTeamModal').modal('show');
@@ -13,13 +13,16 @@ Template.navbar.events({
 Template.dashboard.events({
         'click #btnCreateTeam':function()
         {
+
                 var teamName = $('#teamName').val();
 
                 $('.alert').remove();
 
                 if(teamName!="")
                 {
-                        Teams.insert({name:teamName});
+                        var users = [];
+                        users.push(Meteor.user()._id);
+                        var teamId = Teams.insert({name:teamName,users:users});
                         $('#createTeamModal').modal('hide');
 
                 }
@@ -27,6 +30,33 @@ Template.dashboard.events({
                 {
                         $('#createTeamModalBody').append('<p class="alert alert-warning"> Please input team name</p>');
                 }
+        },
+        'click #btnGo':function(event)
+        {
+                Router.go('/team/'+event.currentTarget.value);
+        },
+        'input #joinTeamName':function()
+        {
+                var teamName = $('#joinTeamName').val();
+                Session.set('searchValue',teamName);
+
+                Meteor.subscribe('searchTeams',teamName);
+
+        },
+        'click #btnJoinTeam':function(event)
+        {
+                var teamId = event.currentTarget.value;
+                Meteor.call('teamJoinRequest',teamId,function(err,success)
+                {
+                        if(err)
+                        {
+                                console.log(err);
+                        }
+                        else
+                        {
+                                console.log(success);
+                        }
+                });
         }
 });
 
@@ -42,6 +72,11 @@ Template.navbar.events({
 
         $('#addMissionModal').modal('show');
 
+},
+'click #teamRequests':function()
+{
+        $('#teamRequestsModal').modal('show');
+
 }
 });
 
@@ -53,6 +88,10 @@ Template.missionsContainer.events({
                Session.set('currentMissionId',event.currentTarget.value);
 
 
+},
+'click #taskCheckBox':function(event)
+{
+        Tasks.update({_id:event.currentTarget.value},{$set:{completed:event.currentTarget.checked}});
 }
 });
 
@@ -66,7 +105,8 @@ Template.teamWall.events({
         if(status!="")
         {
                 var time = Math.round(+new Date()/1000);
-                Status.insert({userId:1,userProPic:"https://pbs.twimg.com/profile_images/480193194982776832/4ON0k7xg_bigger.jpeg",status:status,time:time,fullName:"Febin"});
+                var teamId = Session.get('teamId');
+                Status.insert({teamId:teamId,userId:1,userProPic:Meteor.user().services.twitter.profile_image_url,status:status,time:time,fullName:Meteor.user().profile.name});
                 $('#updateStatusModal').modal('hide');
 
 
@@ -96,7 +136,8 @@ Template.teamWall.events({
            if(missionName!="")
                   {
 
-                        Missions.insert({name:missionName,time:time});
+                        var teamId = Session.get('teamId');
+                        Missions.insert({name:missionName,time:time,teamId:teamId});
                         $('#addMissionModal').modal('hide');
 
                   }
@@ -122,7 +163,8 @@ Template.teamWall.events({
         if(task!="")
         {
                 var currentMissionId =  Session.get('currentMissionId');
-                Tasks.insert({task:task,missionId:currentMissionId,completed:false});
+                var teamId = Session.get('teamId');
+                Tasks.insert({task:task,missionId:currentMissionId,completed:false,teamId:teamId});
                 $('#addTasksModalBody').modal('hide');
         }
         else
@@ -131,6 +173,42 @@ Template.teamWall.events({
 
 
         }
+},
+'click #acceptUser':function(event)
+{
+
+        var userId = event.currentTarget.value;
+        var teamId = Session.get('teamId');
+        Meteor.call('acceptUserRequest',userId,teamId,function(err,success)
+        {
+                if(err)
+                {
+                        console.log(err);
+                }
+                else
+                {
+                        console.log(success);
+                }
+        });
+
+
+},
+'click #rejectUser':function(event)
+{
+        var userId = event.currentTarget.value;
+        var teamId = Session.get('teamId');
+
+        Meteor.call('rejectUserRequest',userId,teamId,function(err,success)
+        {
+                if(err)
+                {
+                        console.log(err);
+                }
+                else
+                {
+                        console.log(success);
+                }
+        });
 }
 });
 
@@ -141,8 +219,9 @@ Template.chatContainer.events({
         var time = Math.round(+new Date()/1000);
 
         var message = $('#txtBox').val();
+        var teamId = Session.get('teamId');
 
         if(message!="")
-        Messages.insert({name:"Febin",message:message,time:time});
+        Messages.insert({name:Meteor.user().profile.name,message:message,time:time,teamId:teamId});
         }
 })

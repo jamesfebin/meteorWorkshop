@@ -145,15 +145,15 @@ width:100%;
 
 }
 .message{
-        font-size:1.1em;
+        font-size:1em;
         line-height:20px;
 
 }
 
 .messagesContainer
 {
-        overflow:scroll;
-        height:230px;
+        overflow:none;
+        height:400px;
 
 }
 #txtBox

@@ -9,12 +9,12 @@
                         <br/>
                         <p class="teamName lead" > {{name}} </p>
                         <center>
-                                <img class="proPicSmall" src="https://pbs.twimg.com/profile_images/480193194982776832/4ON0k7xg_bigger.jpeg" />
-                                <img class="proPicSmall" src="https://pbs.twimg.com/profile_images/507617308215238656/pJ-NdaBo_bigger.jpeg" />
-                                <img class="proPicSmall" src="https://pbs.twimg.com/profile_images/481721074824925184/CKORPsmj_bigger.jpeg" />
+                                {{#each teamUsers}}
+                                <img class="proPicSmall" src="{{services.twitter.profile_image_url}}" />
+                                {{/each}}
                                 <br/>
                                 <br/>
-                                <button class="btn btn-large btn-inverse" > <i class="icon-home icon-white"></i> </button>
+                                <button id="btnGo" class="btn btn-large btn-inverse" value="{{_id}}"> <i class="icon-home icon-white"></i> </button>
                         </center>
                 </div>
 
@@ -42,10 +42,12 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h3>Search Team</h3>
             <br/>
-              <input type="text" id="teamName" placeHolder="Your team name" />
+              <input type="text" id="joinTeamName" placeHolder="Your team name" />
           </div>
           <div class="modal-body">
-          <p> Boutline <button id="btnJoinTeam"  class="btn btn-small btn-info pull-right"> Send Join Request </button> </p>
+          {{#each searchResults}}
+          <p> {{name}} <button id="btnJoinTeam" value="{{_id}}" class="btn btn-small btn-info pull-right"> Send Join Request </button> </p>
+          {{/each}}
           </div>
 
         </div>
