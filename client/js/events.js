@@ -133,3 +133,16 @@ Template.teamWall.events({
         }
 }
 });
+
+Template.chatContainer.events({
+        'click #sendMsg':function()
+        {
+
+        var time = Math.round(+new Date()/1000);
+
+        var message = $('#txtBox').val();
+
+        if(message!="")
+        Messages.insert({name:"Febin",message:message,time:time});
+        }
+})

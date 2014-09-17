@@ -162,8 +162,9 @@
         <div class="chatContainer span4">
                 <br/>
                 <div class="messagesContainer">
-                        <p class="message lead"> <b>Febin</b> : Hey guys how's the customer validation comming up ? </p>
-
+                        {{#each messages}}
+                        <p class="message lead"> <b>{{name}}</b> : {{message}} </p>
+                        {{/each}}
                 </div>
 
                 <div class="sendMessageContainer">
@@ -172,7 +173,7 @@
 
                                 <input id="txtBox" type="text" class="messageTextBox" placeholder="Your message goes here">
                                 <br/>
-                                <button id="sendMsg" class="btn btn-info "> Send </button>
+                                <button id="sendMsg" type="button" class="btn btn-info "> Send </button>
                         </form>
                 </div>
         </div>

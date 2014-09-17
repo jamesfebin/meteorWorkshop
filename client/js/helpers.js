@@ -32,14 +32,7 @@ Template.missionsContainer.helpers({
         return moment.unix(this.time).format("MMM Do YYYY");
         }
 });
-
-Template.chatContainer.events({
-        'click #sendMsg':function()
-        {
-
-        var message = $('#txtBox').val();
-
-        Messages.insert({})        
-
-        }
-})
+Template.chatContainer.messages = function()
+{
+        return Messages.find({});
+}
