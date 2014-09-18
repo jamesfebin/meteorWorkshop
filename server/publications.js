@@ -3,6 +3,25 @@ Meteor.publish('teamsData',function(limit)
         return Teams.find({},{limit:limit});
 });
 
+Meteor.publish('statusData',function(teamId,limit)
+{
+        return Status.find({teamId:teamId},{sort:{time:-1},limit:limit});
+});
+
+Meteor.publish('missionsData',function(teamId,limit)
+{
+        return Missions.find({teamId:teamId},{limit:limit});
+});
+
+Meteor.publish('messagesData',function(teamId,limit)
+{
+        return Messages.find({teamId:teamId},{sort:{time:-1},limit:limit});
+});
+Meteor.publish('tasksData',function(teamId,limit)
+{
+        return Tasks.find({teamId:teamId},{limit:limit});
+});
+
 
 /*
 

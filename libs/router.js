@@ -28,6 +28,11 @@ this.route("teamWall",{
         waitOn:function()
         {
                 Session.set('teamId',this.params.id);
+                this.subscribe('statusData',this.params.id,10);
+                this.subscribe('missionsData',this.params.id,10);
+                this.subscribe('messagesData',this.params.id,10);
+                this.subscribe('tasksData',this.params.id,10);
+
         }
 
 });
