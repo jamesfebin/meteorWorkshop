@@ -1,3 +1,9 @@
+Meteor.publish('teamsData',function(limit)
+{
+        return Teams.find({},{limit:limit});
+});
+
+
 /*
 
 teamsData

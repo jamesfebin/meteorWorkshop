@@ -1,3 +1,42 @@
+Router.map(function(){
+
+this.route("home",{
+
+        path:'/'
+
+});
+});
+
+Router.map(function(){
+
+this.route("dashboard",{
+
+        path:'/dashboard',
+        waitOn:function()
+        {
+                this.subscribe('teamsData',5);
+        }
+
+});
+});
+
+Router.map(function(){
+
+this.route("teamWall",{
+
+        path:'/teams/:id',
+        waitOn:function()
+        {
+                Session.set('teamId',this.params.id);
+        }
+
+});
+});
+
+
+
+
+
 /*
 Sample Route
 this.route("dashboard",{

@@ -22,6 +22,13 @@ Template.navbar.events({
                 $('#addMissionModal').modal('show');
         }
 });
+
+Template.dashboard.events({
+        'click #btnGo':function(event)
+        {
+                Router.go('/teams/'+event.currentTarget.value);
+        }
+})
 /*
 Dashboard Events
 
