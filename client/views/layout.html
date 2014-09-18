@@ -15,6 +15,7 @@
     <a class="brand" href="/">TeamSync</a>
     <ul class="nav">
 
+        {{#if isLoggedIn}}
       <li id="createTeam"><a href="#" > <i class="icon-th-large"> </i> Create Team </a>  </li>
       <li id="joinTeam"><a href="#"> <i class="icon-resize-small"> </i> Join Team </a>  </li>
 
@@ -23,10 +24,11 @@
 </a>   </li>
       <li id="updateStatus"><a href="#"> <i class="icon-bullhorn">   </i> Update Status</a></li>
       <li id="addMission"><a href="#"> <i class="icon-flag">   </i> Add Mission</a></li>
+      {{/if}}
     </ul>
     <ul class="nav pull-right">
 
-      <li > <a></a> </li>
+      <li > <a>{{> loginButtons}}</a> </li>
 
 
     </ul>

@@ -61,6 +61,16 @@ Template.missionsContainer.helpers({
 
         }
 });
+
+Template.navbar.helpers({
+        'isLoggedIn':function()
+        {
+                if(Meteor.user())
+                        return true;
+                        else
+                        return false;
+        }
+})
 /*
 statusContainer Helpers
 
