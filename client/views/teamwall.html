@@ -18,9 +18,7 @@
                         <h3>Team Requests</h3>
                 </div>
                 <div class="modal-body">
-                        {{#each teamRequests}}
-                        <p> {{profile.name}} <span class="pull-right"> <button value ={{_id}} id="acceptUser" class="btn btn-small btn-success "> Accept </button>  <button value={{_id}} id="rejectUser" class="btn btn-small btn-warning"> Reject </button></span> </p>
-                        {{/each}}
+                        <p> Febin <span class="pull-right"> <button value="" id="acceptUser" class="btn btn-small btn-success "> Accept </button>  <button value={{_id}} id="rejectUser" class="btn btn-small btn-warning"> Reject </button></span> </p>
                 </div>
         </div>
 
@@ -83,12 +81,10 @@
                         <table class="table table-striped table-bordered">
 
                                 <tbody>
-                                        {{#each tasks}}
                                         <tr>
-                                                <td> {{task}}</td>
+                                                <td> Add Notification Feature</td>
                                         </tr>
 
-                                        {{/each}}
 
                                 </tbody>
                         </table>
@@ -103,19 +99,17 @@
 <template name="statusContainer">
         <div class="statusContainer span4">
                 <br/>
-                {{#each statusUpdates}}
                 <div class="statusBoxContainer row">
                         <div class="statusProPicContainer span1">
 
-                                <img class="statusProPic" src="{{userProPic}}" />
+                                <img class="statusProPic" src="http://pbs.twimg.com/profile_images/511935012778684416/2KPs4l2C_normal.jpeg" />
 
                         </div>
                         <div class="statusUpdate span3">
-                                <p class="FullName"> {{name}}</p>
-                                <p class="statusText lead"> {{status}} </p>
+                                <p class="FullName"> Febin John James</p>
+                                <p class="statusText lead"> Working on templates </p>
                         </div>
                 </div>
-                {{/each}}
         </div>
 </template>
 
@@ -124,26 +118,23 @@
         <div class="missionContainer span4">
                 <br/>
 
-                {{#each missions}}
                 <div class="missinBoxContainer row alert alert-info ">
 
-                        <p class="lead "> {{name}} <button id="addTasks" value="{{_id}}" class="btn btn-default pull-right"> <i class="icon-tasks"> </i> </button> </p>
-                        <small > {{date}} </small>
+                        <p class="lead "> Introduction To Meteor <button id="addTasks" value="" class="btn btn-default pull-right"> <i class="icon-tasks"> </i> </button> </p>
+                        <small > 19th Sep 2014 </small>
 
                         <div class="progress progress-success progress-striped">
-                                <div class="bar" style="width: {{progress}}%"></div>
+                                <div class="bar" style="width: 50%"></div>
                         </div>
 
                         <div class="taskListContainer">
 
-                                {{#each tasks _id}}
                                 <div class="taskContainer">
                                         <label class="checkbox ">
-                                                <input id="taskCheckBox" value="{{_id}}" type="checkbox" checked="{{completed}}" > <b class="lead tasksText muted"> {{task}}</b>
+                                                <input id="taskCheckBox" value="" type="checkbox" checked="true" > <b class="lead tasksText muted"> Before Meteor</b>
                                         </label>
 
                                 </div>
-                                {{/each}}
 
 
                         </div>
@@ -152,7 +143,6 @@
 
 
                 </div>
-                {{/each}}
 
 
                 <!--Body content-->
@@ -163,9 +153,7 @@
         <div class="chatContainer span4">
                 <br/>
                 <div class="messagesContainer">
-                        {{#each messages}}
-                        <p class="message lead"> <b>{{name}}</b> : {{message}} </p>
-                        {{/each}}
+                        <p class="message lead"> <b>Febin</b> : Anyone Here? </p>
                 </div>
 
                 <div class="sendMessageContainer">

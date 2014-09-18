@@ -1,81 +1,37 @@
+/*
+Sample Route
+this.route("dashboard",{
 
-Router.map(function(){
+        path:'/dashboard',
+        waitOn:function()
+        {
+                Session.set('currentPage','dashboard');
 
-        this.route("home",{
+                Meteor.subscribe('teamsData');
+        },
+        onBeforeAction: function () {
+        if (! Meteor.user()) {
 
-                path:'/',
-                onAfterAction:function()
-                {
-
-                        Session.set('currentPage','index');
-                        if(Meteor.user())
-                                Router.go('/dashboard');
+              if (Meteor.loggingIn()) {
                 }
-
-        });
-
+              else{
+                Router.go('/');
+              }
+            }
+        }
 });
-if(Meteor.isClient)
-{
-Meteor.subscribe('userData');
-}
+*/
 
+/*
+        Subscribe user data
+*/
 
-Router.map(function(){
+/*
+        Dashboard
+        Subscribe teamsData
+*/
 
-        this.route("dashboard",{
-
-                path:'/dashboard',
-                waitOn:function()
-                {
-                        Session.set('currentPage','dashboard');
-
-                        Meteor.subscribe('teamsData');
-                },
-                onBeforeAction: function () {
-                if (! Meteor.user()) {
-
-                      if (Meteor.loggingIn()) {
-                        }
-                      else{
-                        Router.go('/');
-                      }
-                    }
-                }
-        });
-
-});
-
-Router.map(function(){
-
-        this.route("teamWall",{
-
-                path:'/team/:id',
-                waitOn:function()
-                {
-                        Session.set('currentPage','team');
-
-                        Session.set('teamId',this.params.id);
-                        this.subscribe('messagesData',this.params.id,10);
-                        this.subscribe('statusData',this.params.id,10);
-                        this.subscribe('missionsData',this.params.id,10);
-                        this.subscribe('tasksData',this.params.id,10);
-                        this.subscribe('teamsData');
-                        this.subscribe('teamRequestUsersData',this.params.id);
-                        this.subscribe('teamUserData',this.params.id,50);
-
-
-                },
-                onBeforeAction: function () {
-                if (! Meteor.user()) {
-
-                      if (Meteor.loggingIn()) {
-                        }
-                      else{
-                        Router.go('/');
-                      }
-                    }
-                }
-        });
-
-});
+/*
+        Teams Wall Page
+        Subscribe messagesData,statusData,missionsData,tasksData,teamsData,teamRequestUsersData,teamUserData
+*/

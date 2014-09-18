@@ -1,240 +1,90 @@
-Template.navbar.events({
-        'click #createTeam':function(event)
-        {
+/*
+Navbar Click Events
 
-                $('#createTeamModal').modal('show');
-                        },
-        'click #joinTeam':function(event)
-        {
-                $('#joinTeamModal').modal('show');
-        }
-});
+click #createTeam
+        #createTeamModal
+click #joinTeam
+        #joinTeamModal
+click #updateStatus
+        #updateStatusModal
+click #addMission
+        #addMissionModal
+click #teamRequests
+        #teamRequestsModal
+*/
 
-Template.dashboard.events({
-        'click #btnCreateTeam':function()
-        {
+/*
+Dashboard Events
 
-                var teamName = $('#teamName').val();
+click #btnCreateTeam
 
-                $('.alert').remove();
+        click #teamName
 
-                if(teamName!="")
-                {
-                        var users = [];
-                        users.push(Meteor.user()._id);
-                        var teamId = Teams.insert({name:teamName,users:users});
-                        $('#createTeamModal').modal('hide');
+        #createTeamModal
 
-                }
-                else
-                {
-                        $('#createTeamModalBody').append('<p class="alert alert-warning"> Please input team name</p>');
-                }
-        },
-        'click #btnGo':function(event)
-        {
-                Router.go('/team/'+event.currentTarget.value);
-        },
-        'input #joinTeamName':function()
-        {
-                var teamName = $('#joinTeamName').val();
-                Session.set('searchValue',teamName);
+click #btnGo
 
-                Meteor.subscribe('searchTeams',teamName);
+input #joinTeamName
+        subscribe
 
-        },
-        'click #btnJoinTeam':function(event)
-        {
-                var teamId = event.currentTarget.value;
-                Meteor.call('teamJoinRequest',teamId,function(err,success)
-                {
-                        if(err)
-                        {
-                                console.log(err);
-                        }
-                        else
-                        {
-                                console.log(success);
-                                $('#joinTeamModal').modal('hide');
-                        }
-                });
-        }
-});
+click #btnJoinTeam
+        #joinTeamModal
 
-Template.navbar.events({
-'click #updateStatus':function()
-{
-
-        $('#updateStatusModal').modal('show');
-
-},
-'click #addMission' :function()
-{
-
-        $('#addMissionModal').modal('show');
-
-},
-'click #teamRequests':function()
-{
-        $('#teamRequestsModal').modal('show');
-
-}
-});
-
-Template.missionsContainer.events({
-'click #addTasks':function(event)
-{
-
-               $('#addTasksModal').modal('show');
-               Session.set('currentMissionId',event.currentTarget.value);
+*/
 
 
-},
-'click #taskCheckBox':function(event)
-{
-        Tasks.update({_id:event.currentTarget.value},{$set:{completed:event.currentTarget.checked}});
-}
-});
+/*
 
-Template.teamWall.events({
-'click #btnUpdateStatus':function()
-{
+missionsContainer events
+click #addTasks
+        #addTasksModal
 
- var status = $('#statusTextBox').val();
+click #taskCheckBox
 
-        $('.error').remove();
-        if(status!="")
-        {
-                var time = Math.round(+new Date()/1000);
-                var teamId = Session.get('teamId');
-                Status.insert({teamId:teamId,userId:1,userProPic:Meteor.user().services.twitter.profile_image_url,status:status,time:time,fullName:Meteor.user().profile.name});
-                Meteor.call('updateStatus',status,function(err,success)
-                {
-                        if(err)
-                        {
-                                console.log(err);
-                        }
-                        else
-                        {
-                                console.log(success);
-                        }
-                });
-                $('#updateStatusModal').modal('hide');
+*/
+
+/*
+TeamWall Events
+click #btnUpdateStatus
+
+        #statusTextBox
+
+        Hint
+        Get current time in unixtime
+        Math.round(+new Date()/1000);
+        updateStatusModal
 
 
+click btnAddMission
+        #day
+        #month
+        #year
 
-        }
-        else
-        {
+        Hint
+        Convert String date to unixtime
+        Math.round(new Date(year+"-"+month+"-"+day).getTime()/1000);
 
-                $('#updateStatusModalBody').append('<p class="alert alert-danger error"> Please input  status</p>');
-
-        }
-
-},
-'click #btnAddMission':function()
-{
-
-        $('.error').remove();
-        var missionName = $("#missionTextBox").val();
-
-        var day = $('#day').val();
-        var month = $('#month').val();
-        var year = $('#year').val();
-
-        var time = Math.round(new Date(year+"-"+month+"-"+day).getTime()/1000);
-
-        if(time)
-        {
-           if(missionName!="")
-                  {
-
-                        var teamId = Session.get('teamId');
-                        Missions.insert({name:missionName,time:time,teamId:teamId});
-                        $('#addMissionModal').modal('hide');
-
-                  }
-           else
-                   {
-
-                        $('#addMissionModalBody').append('<p class="alert alert-danger error"> Please input  mission name</p>');
-
-                   }
-        }
-        else
-                {
-                        $('#addMissionModalBody').append('<p class="alert alert-danger error"> Please input  valid date</p>');
-
-                }
-
-},
-'click #btnAddTasks':function()
-{
-        $('.error').remove();
-
-        var task = $('#taskTextBox').val();
-        if(task!="")
-        {
-                var currentMissionId =  Session.get('currentMissionId');
-                var teamId = Session.get('teamId');
-                Tasks.insert({task:task,missionId:currentMissionId,completed:false,teamId:teamId});
-                $('#addTasksModalBody').modal('hide');
-        }
-        else
-        {
-                $('#addTasksModalBody').append('<p class="alert alert-danger error"> Please input  task</p>');
+        #addMissionModal
 
 
-        }
-},
-'click #acceptUser':function(event)
-{
+click #btnAddTasks
+                #addTasksModalBody
 
-        var userId = event.currentTarget.value;
-        var teamId = Session.get('teamId');
-        Meteor.call('acceptUserRequest',userId,teamId,function(err,success)
-        {
-                if(err)
-                {
-                        console.log(err);
-                }
-                else
-                {
-                        console.log(success);
-                }
-        });
+click #acceptUser
 
+click #rejectUser
 
-},
-'click #rejectUser':function(event)
-{
-        var userId = event.currentTarget.value;
-        var teamId = Session.get('teamId');
+*/
 
-        Meteor.call('rejectUserRequest',userId,teamId,function(err,success)
-        {
-                if(err)
-                {
-                        console.log(err);
-                }
-                else
-                {
-                        console.log(success);
-                }
-        });
-}
-});
+/*
 
-Template.chatContainer.events({
-        'click #sendMsg':function()
-        {
+ChatContainer.events
+        click #sendMsg
 
+        Hint
+        Get current unixtime
         var time = Math.round(+new Date()/1000);
 
-        var message = $('#txtBox').val();
-        var teamId = Session.get('teamId');
+        #txtBox
 
-        if(message!="")
-        Messages.insert({name:Meteor.user().profile.name,message:message,time:time,teamId:teamId});
-        }
-})
+*/
