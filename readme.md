@@ -1,9 +1,9 @@
 
 
 
-Mongo Queries
+**Mongo Queries**
 
-'''db.missions.insert({mission:"Learn WebApp Development"});
+db.missions.insert({mission:"Learn WebApp Development"});
 
 db.tasks.insert({name:"Learn HTML",missionId:1});
 db.tasks.insert({name:"Learn CSS",missionId:1});
@@ -37,4 +37,3 @@ db.tasks.findOne({});
 db.tasks.remove({});
 
 db.tasks.find({$or:[{name:"Learn HTML"},{missionId:1}]})
-'''
