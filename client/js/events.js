@@ -12,7 +12,16 @@ click #addMission
 click #teamRequests
         #teamRequestsModal
 */
-
+Template.navbar.events({
+        'click #updateStatus':function(event)
+        {
+                $('#updateStatusModal').modal('show');
+        },
+        'click #addMission':function(event)
+        {
+                $('#addMissionModal').modal('show');
+        }
+});
 /*
 Dashboard Events
 
@@ -43,6 +52,65 @@ click #taskCheckBox
 
 */
 
+
+
+Template.teamWall.events({
+  'click #btnUpdateStatus':function()
+  {
+          var status = $("#statusTextBox").val();
+          var time = Math.round(+new Date()/1000);
+         console.log(Status.insert({fullName:"Febin John James",statusUpdate:status,time:time}));
+         $('#updateStatusModal').modal('hide');
+ },
+ 'click #btnAddMission':function()
+ {
+
+        var day = $('#day').val();
+        var month = $('#month').val();
+        var year = $('#year').val();
+        var time = Math.round(new Date(year+"-"+month+"-"+day).getTime()/1000);
+        var mission = $('#missionTextBox').val();
+        console.log(Missions.insert({name:mission,deadline:time}));
+        $('#addMissionModal').modal('hide');
+
+},
+'click #btnAddTasks':function(event)
+{
+        var missionId = Session.get('currentMissionId');
+        var task = $('#taskTextBox').val();
+        if(task!="")
+        {
+                console.log(Tasks.insert({missionId:missionId,task:task}));
+                $('#addTasksModal').modal('hide');
+        }
+}
+
+});
+
+Template.missionsContainer.events({
+        'click #addTasks':function(event)
+        {
+                Session.set('currentMissionId',event.currentTarget.value);
+                $('#addTasksModal').modal('show');
+        },
+        'click #taskCheckBox':function(event)
+        {
+                var taskId = event.currentTarget.value;
+                Tasks.update({_id:taskId},{$set:{completed:event.currentTarget.checked}})
+        }
+})
+Template.chatContainer.events({
+        'click #sendMsg':function()
+        {
+
+                var message = $("#txtBox").val();
+
+                if(message!="")
+                {
+                        Messages.insert({fullName:"Febin",message:message});
+                }
+        }
+})
 /*
 TeamWall Events
 click #btnUpdateStatus

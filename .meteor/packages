@@ -8,4 +8,5 @@ bootstrap
 jquery
 autopublish
 insecure
+mrt:momentjs
 

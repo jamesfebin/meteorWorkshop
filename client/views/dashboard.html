@@ -3,10 +3,10 @@
 
         <div class="teamBoxContainer row">
 
-
+                {{#each teams}}
                 <div class="teamBox span4">
                         <br/>
-                        <p class="teamName lead" > HasGeek Workshop </p>
+                        <p class="teamName lead" > {{name}} </p>
                         <center>
                                 <img class="proPicSmall" src="http://pbs.twimg.com/profile_images/511935012778684416/2KPs4l2C_normal.jpeg" />
                                 <br/>
@@ -14,6 +14,7 @@
                                 <button id="btnGo" class="btn btn-large btn-inverse" value=""> <i class="icon-home icon-white"></i> </button>
                         </center>
                 </div>
+                {{/each}}
 
 
         </div>

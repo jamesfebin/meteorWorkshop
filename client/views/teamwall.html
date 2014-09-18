@@ -71,7 +71,6 @@
                 </div>
                 <div id="addTasksModalBody" class="modal-body">
                         <label for="teamName"> Task  </label>
-
                         <input type="text" class="lead" id="taskTextBox" placeHolder="Add Notification Feature" />
                         <br/>
                         <button class="btn" id="btnAddTasks"> <i class="icon-plus icon-black">  </i> Add task</button>
@@ -81,11 +80,13 @@
                         <table class="table table-striped table-bordered">
 
                                 <tbody>
+                                        {{#each tasks}}
+
                                         <tr>
-                                                <td> Add Notification Feature</td>
+                                                <td> {{task}}</td>
                                         </tr>
 
-
+                                        {{/each}}
                                 </tbody>
                         </table>
                 </div>
@@ -99,6 +100,7 @@
 <template name="statusContainer">
         <div class="statusContainer span4">
                 <br/>
+                {{#each status}}
                 <div class="statusBoxContainer row">
                         <div class="statusProPicContainer span1">
 
@@ -106,10 +108,11 @@
 
                         </div>
                         <div class="statusUpdate span3">
-                                <p class="FullName"> Febin John James</p>
-                                <p class="statusText lead"> Working on templates </p>
+                                <p class="FullName"> {{fullName}}</p>
+                                <p class="statusText lead"> {{statusUpdate}} </p>
                         </div>
                 </div>
+                {{/each}}
         </div>
 </template>
 
@@ -117,25 +120,26 @@
 
         <div class="missionContainer span4">
                 <br/>
-
+                {{#each missions}}
                 <div class="missinBoxContainer row alert alert-info ">
 
-                        <p class="lead "> Introduction To Meteor <button id="addTasks" value="" class="btn btn-default pull-right"> <i class="icon-tasks"> </i> </button> </p>
-                        <small > 19th Sep 2014 </small>
+                        <p class="lead "> {{name}} <button id="addTasks" value="{{_id}}" class="btn btn-default pull-right"> <i class="icon-tasks"> </i> </button> </p>
+                        <small > {{date}}</small>
 
                         <div class="progress progress-success progress-striped">
-                                <div class="bar" style="width: 50%"></div>
+                                <div class="bar" style="width: {{progress}}%"></div>
                         </div>
 
                         <div class="taskListContainer">
+                                {{#each tasks _id}}
 
                                 <div class="taskContainer">
                                         <label class="checkbox ">
-                                                <input id="taskCheckBox" value="" type="checkbox" checked="true" > <b class="lead tasksText muted"> Before Meteor</b>
+                                                <input id="taskCheckBox" value="{{_id}}" type="checkbox" checked="{{completed}}" > <b class="lead tasksText muted"> {{task}}</b>
                                         </label>
 
                                 </div>
-
+                                {{/each}}
 
                         </div>
 
@@ -143,6 +147,7 @@
 
 
                 </div>
+                {{/each}}
 
 
                 <!--Body content-->
@@ -153,7 +158,9 @@
         <div class="chatContainer span4">
                 <br/>
                 <div class="messagesContainer">
-                        <p class="message lead"> <b>Febin</b> : Anyone Here? </p>
+                        {{#each messages}}
+                        <p class="message lead"> <b>{{fullName}}</b> : {{message}} </p>
+                        {{/each}}
                 </div>
 
                 <div class="sendMessageContainer">
