@@ -66,7 +66,8 @@ Template.teamWall.events({
   {
           var status = $("#statusTextBox").val();
           var time = Math.round(+new Date()/1000);
-         console.log(Status.insert({fullName:"Febin John James",statusUpdate:status,time:time}));
+          var teamId = Session.get('teamId');
+         console.log(Status.insert({fullName:"Febin John James",statusUpdate:status,time:time,teamId:teamId}));
          $('#updateStatusModal').modal('hide');
  },
  'click #btnAddMission':function()
@@ -77,7 +78,9 @@ Template.teamWall.events({
         var year = $('#year').val();
         var time = Math.round(new Date(year+"-"+month+"-"+day).getTime()/1000);
         var mission = $('#missionTextBox').val();
-        console.log(Missions.insert({name:mission,deadline:time}));
+        var teamId = Session.get('teamId');
+
+        console.log(Missions.insert({name:mission,deadline:time,teamId:teamId}));
         $('#addMissionModal').modal('hide');
 
 },
@@ -87,7 +90,9 @@ Template.teamWall.events({
         var task = $('#taskTextBox').val();
         if(task!="")
         {
-                console.log(Tasks.insert({missionId:missionId,task:task}));
+                var teamId = Session.get('teamId');
+
+                console.log(Tasks.insert({missionId:missionId,task:task,teamId:teamId}));
                 $('#addTasksModal').modal('hide');
         }
 }
@@ -114,7 +119,9 @@ Template.chatContainer.events({
 
                 if(message!="")
                 {
-                        Messages.insert({fullName:"Febin",message:message});
+                        var teamId = Session.get('teamId');
+
+                        Messages.insert({fullName:"Febin",message:message,teamId:teamId});
                 }
         }
 })
